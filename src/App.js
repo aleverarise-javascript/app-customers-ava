@@ -1,34 +1,34 @@
 import React, { Component } from 'react';
-import { Link, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import './App.css';
 import HomeContainer from './containers/HomeContainer';
 import CustomersContainer from './containers/CustomersContainer';
-import './App.css';
-import './index.css';
-
+import CustomerContainer from './containers/CustomerContainer';
+import NewCustomerContainer from './containers/NewCustomerContainer';
 
 class App extends Component {
 
-	renderHome= () => <HomeContainer />;
-	renderCustomerContainer = () => <h1>renderCustomerContainer</h1>;
-	renderCustomerListContainer = () => <h1>renderCustomerListContainer</h1>;
-	renderCustomerNewContainer = () => <h1>renderCustomerNewContainer</h1>;
+  renderHome = () => <h1>Home</h1>;
 
-	render() {
-		return (
-			<div className="App">
-				<Router>
-					<div>
-						<Route exact path="/customers" component={CustomersContainer} />
-						<Route exact path="/" component={HomeContainer} />
-						<Switch>
-							<Route path="/customers/new" component={this.renderCustomerNewContainer} />
-							<Route path="/customers/:dni" component={this.renderCustomerContainer} />
-						</Switch>
-					</div>
-				</Router>
-			</div>
-		);
-	}
+  renderCustomerContainer = () => <h1>Customer Container</h1>;
+
+  renderCustomerListContainer = () => <h1>Customers List Container</h1>;
+
+  render() {
+    return (
+      <Router>
+        <div>
+          <Route exact path="/" component={HomeContainer} />
+          <Route exact path="/customers" component={CustomersContainer} />
+          <Switch>
+            <Route path="/customers/new" component={NewCustomerContainer} />
+            <Route path="/customers/:dni" 
+                    render={props => <CustomerContainer dni={props.match.params.dni} />} />
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;

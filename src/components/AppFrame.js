@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AppHeader from './AppHeader';
 
-const AppFrame = ({header, body, footer}) => {
+const AppFrame = ({header, body}) => {
     return (
         <div>
             <div className="app-frame">
-                <AppHeader title={header} />
+                <AppHeader title={header}></AppHeader>
                 <div>{body}</div>
-                <div>{`Aleverarise`}</div>
+                <div><p>Aplicación Simple de Ejemplo</p></div>
             </div>
         </div>
     );
